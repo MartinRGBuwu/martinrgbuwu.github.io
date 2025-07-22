@@ -14,11 +14,11 @@ html, body {
 
 .container {
   display: flex;
+  flex-direction: row;
   width: 100vw;
   height: 100vh;
 }
 
-/* Sections */
 .column {
   position: relative;
   flex: 1;
@@ -28,7 +28,7 @@ html, body {
   cursor: default;
 }
 
-/* Background image as pseudo-element */
+/* Background as pseudo-layer */
 .column::before {
   content: "";
   position: absolute;
@@ -36,13 +36,12 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: scale(1.05); /* slight zoom */
+  transform: scale(1.05);
   transition: transform 0.5s ease;
   filter: brightness(0.5) blur(6px);
   z-index: 0;
 }
 
-/* Specific images */
 .column.left::before {
   background-image: url('bg_left.png');
 }
@@ -53,17 +52,15 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Hover zoom in */
+/* Zoom effects */
 .column:hover::before {
   transform: scale(1.1);
 }
-
-/* Zoom out non-hovered sections */
 .container:hover .column:not(:hover)::before {
   transform: scale(1.0);
 }
 
-/* Clip-paths */
+/* Angled layout (desktop only) */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
@@ -84,12 +81,12 @@ html, body {
   z-index: 4;
 }
 
-/* Content styling */
+/* Text content */
 .content {
   position: relative;
   z-index: 10;
   padding: 2rem;
-  color: #9fffd2; /* mint green to confirm version */
+  color: #6bf8d9; /* teal to confirm version */
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
@@ -102,14 +99,14 @@ h1 {
   text-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
-/* Link styles (buttons) */
+/* Link buttons */
 a {
   display: inline-block;
   margin: 0.4rem 0;
   padding: 10px 20px;
-  border: 2px solid #9fffd2;
+  border: 2px solid #6bf8d9;
   border-radius: 8px;
-  color: #9fffd2;
+  color: #6bf8d9;
   background-color: rgba(0, 0, 0, 0.4);
   text-decoration: none;
   font-weight: bold;
@@ -117,21 +114,58 @@ a {
   text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 a:hover {
-  background-color: #9fffd2;
+  background-color: #6bf8d9;
   color: black;
-  box-shadow: 0 0 15px #9fffd2;
+  box-shadow: 0 0 15px #6bf8d9;
 }
 
-/* Hover text for SkinSniper */
+/* SkinSniper extra text */
 .hover-text {
   opacity: 0;
   transition: opacity 0.3s ease;
   font-size: 1rem;
   margin-top: 1rem;
-  color: #9fffd2;
+  color: #6bf8d9;
 }
 .column.left:hover .hover-text {
   opacity: 1;
   pointer-events: none;
   user-select: none;
+}
+
+/* ✅ MOBILE VERSION BELOW */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100vw;
+    height: 33.33vh;
+    flex: none;
+    clip-path: none !important;
+  }
+
+  .column:hover {
+    flex: none;
+  }
+
+  .content {
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  a {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+
+  .hover-text {
+    font-size: 0.9rem;
+  }
 }
