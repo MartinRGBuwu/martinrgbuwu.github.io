@@ -28,7 +28,7 @@ html, body {
   cursor: default;
 }
 
-/* Background as pseudo-layer */
+/* Backgrounds */
 .column::before {
   content: "";
   position: absolute;
@@ -52,7 +52,7 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Zoom effects */
+/* Hover zoom */
 .column:hover::before {
   transform: scale(1.1);
 }
@@ -60,7 +60,7 @@ html, body {
   transform: scale(1.0);
 }
 
-/* Angled layout (desktop only) */
+/* Angled layout (desktop) */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
@@ -75,7 +75,7 @@ html, body {
   z-index: 1;
 }
 
-/* Hover-expand */
+/* Expand */
 .column:hover {
   flex: 1.4;
   z-index: 4;
@@ -86,7 +86,7 @@ html, body {
   position: relative;
   z-index: 10;
   padding: 2rem;
-  color: #6bf8d9; /* teal to confirm version */
+  color: #ffe89f; /* buttery yellow */
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
@@ -99,14 +99,14 @@ h1 {
   text-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
-/* Link buttons */
+/* Buttons (links) */
 a {
   display: inline-block;
   margin: 0.4rem 0;
   padding: 10px 20px;
-  border: 2px solid #6bf8d9;
+  border: 2px solid #ffe89f;
   border-radius: 8px;
-  color: #6bf8d9;
+  color: #ffe89f;
   background-color: rgba(0, 0, 0, 0.4);
   text-decoration: none;
   font-weight: bold;
@@ -114,26 +114,23 @@ a {
   text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 a:hover {
-  background-color: #6bf8d9;
+  background-color: #ffe89f;
   color: black;
-  box-shadow: 0 0 15px #6bf8d9;
+  box-shadow: 0 0 15px #ffe89f;
 }
 
-/* SkinSniper extra text */
-.hover-text {
+/* GO TO WEBSITE: hidden on desktop, shown on hover */
+.goto-btn {
   opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 1rem;
-  margin-top: 1rem;
-  color: #6bf8d9;
-}
-.column.left:hover .hover-text {
-  opacity: 1;
   pointer-events: none;
   user-select: none;
 }
+.column.left:hover .goto-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-/* ✅ MOBILE VERSION BELOW */
+/* ✅ MOBILE VERSION */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -141,9 +138,10 @@ a:hover {
 
   .column {
     width: 100vw;
-    height: 33.33vh;
+    height: auto;
     flex: none;
     clip-path: none !important;
+    padding: 4vh 0;
   }
 
   .column:hover {
@@ -151,21 +149,5 @@ a:hover {
   }
 
   .content {
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 1rem;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  a {
-    padding: 8px 16px;
-    font-size: 0.95rem;
-  }
-
-  .hover-text {
-    font-size: 0.9rem;
-  }
-}
+    top: auto;
+    transform: none;
