@@ -182,3 +182,64 @@ a:hover {
     max-height: none;
   }
 }
+
+/* Fullscreen SkinSniper view */
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('bg_left_full.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5) blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999;
+  color: #ffcd9c;
+  text-align: center;
+  padding: 2rem;
+  transition: opacity 0.3s ease;
+}
+
+.fullscreen-content {
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.fullscreen h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.fullscreen .description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #ffcd9c;
+  cursor: pointer;
+  z-index: 1001;
+  text-shadow: 0 0 6px black;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+/* Hide initially */
+.hidden {
+  display: none;
+}
