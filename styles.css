@@ -26,7 +26,7 @@ html, body {
   z-index: 1;
 }
 
-/* Pseudo-element for background images */
+/* Background animation */
 .column::before {
   content: "";
   position: absolute;
@@ -34,12 +34,12 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: scale(1.05); /* Default: slightly zoomed in */
+  transform: scale(1.05); /* default slightly zoomed */
   transition: transform 0.5s ease;
   z-index: 0;
 }
 
-/* Background images */
+/* Image sources */
 .column.left::before {
   background-image: url('bg_left.png');
 }
@@ -50,56 +50,24 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Hover zoom-in */
+/* Zoom on hover */
 .column:hover::before {
   transform: scale(1.1);
 }
 
-/* Zoom-out (but still fills) */
+/* Zoom out for non-hovered */
 .container:hover .column:not(:hover)::before {
   transform: scale(1.0);
 }
 
-/* Clip-paths */
+/* Angled layout */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
 }
-
 .column.middle {
   clip-path: polygon(10% 0, 105% 0, 90% 100%, -5% 100%);
   z-index: 2;
 }
-
 .column.right {
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%);
-  z-index: 1;
-}
-
-/* Expand on hover */
-.column:hover {
-  flex: 1.4;
-  z-index: 4;
-}
-
-/* Text content */
-.content {
-  position: relative;
-  z-index: 10;
-  padding: 2rem;
-  color: #ffc499; /* pale orange to confirm version */
-  text-align: center;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-a {
-  color: #ffc499;
-  text-decoration: underline;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%)
