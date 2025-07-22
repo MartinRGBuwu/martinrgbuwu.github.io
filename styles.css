@@ -184,25 +184,10 @@ a:hover {
 }
 
 /* Fullscreen SkinSniper view */
+
+
 .fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('bg_left_full.png');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.5) blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 999;
-  color: #ffcd9c;
-  text-align: center;
-  padding: 2rem;
-  transition: opacity 0.3s ease;
+  background: red;
 }
 
 .fullscreen-content {
