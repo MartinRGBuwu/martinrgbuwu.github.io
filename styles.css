@@ -6,14 +6,18 @@
 
 html, body {
   height: 100%;
+  width: 100%;
   overflow: hidden;
   font-family: 'Arial', sans-serif;
+  background: black; /* fallback background */
 }
 
 .container {
   display: flex;
+  width: 100vw;
   height: 100vh;
-  width: 100%;
+  background: black; /* hides any possible gaps */
+  position: relative;
 }
 
 .column {
@@ -21,44 +25,55 @@ html, body {
   flex: 1;
   transition: flex 0.4s ease;
   overflow: hidden;
+}
+
+/* LEFT SECTION */
+.column.left {
+  background: url('bg_left.png') center center / cover no-repeat;
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-}
-
-.column.middle {
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  z-index: 2;
-}
-
-.column.right {
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  margin-left: -15%;
-  z-index: 1;
-}
-
-.column:hover {
-  flex: 1.4;
   z-index: 3;
 }
 
-.column.left {
-  background: url('bg_left.png') center center / cover no-repeat;
-}
+/* MIDDLE SECTION */
 .column.middle {
   background: url('bg_middle.png') center center / cover no-repeat;
-}
-.column.right {
-  background: url('bg_right.png') center center / cover no-repeat;
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+  margin-left: -10vw; /* overlap to hide line */
+  z-index: 2;
 }
 
+/* RIGHT SECTION */
+.column.right {
+  background: url('bg_right.png') center center / cover no-repeat;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  margin-left: -10vw; /* overlap to hide line */
+  z-index: 1;
+}
+
+/* HOVER EFFECT */
+.column:hover {
+  flex: 1.4;
+  z-index: 4;
+}
+
+/* TEXT CONTENT */
 .content {
   color: white;
   padding: 2rem;
   position: relative;
   z-index: 10;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 a {
   color: #fff;
   text-decoration: underline;
   font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
 }
