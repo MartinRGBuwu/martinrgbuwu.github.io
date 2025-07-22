@@ -7,55 +7,52 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background: black;
+  overflow: hidden;
 }
 
 .container {
-  display: flex;
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background: black;
-  position: relative;
 }
 
 .column {
-  position: relative;
-  flex: 1;
-  transition: flex 0.4s ease;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 33.3333vw;
+  transition: transform 0.4s ease;
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-/* LEFT */
 .column.left {
+  left: 0;
   background: url('bg_left.png') center center / cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
   z-index: 3;
 }
-
-/* MIDDLE */
 .column.middle {
+  left: 33.3333vw;
   background: url('bg_middle.png') center center / cover no-repeat;
-  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
   z-index: 2;
 }
-
-/* RIGHT */
 .column.right {
+  left: 66.6666vw;
   background: url('bg_right.png') center center / cover no-repeat;
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
   z-index: 1;
 }
 
-/* Hover effect */
+/* Hover Expansion via Scaling */
 .column:hover {
-  flex: 1.4;
+  transform: scale(1.08);
   z-index: 4;
 }
 
-/* Content */
+/* Text content */
 .content {
   color: white;
   padding: 2rem;
