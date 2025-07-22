@@ -28,7 +28,7 @@ html, body {
   cursor: default;
 }
 
-/* Backgrounds */
+/* Background layer */
 .column::before {
   content: "";
   position: absolute;
@@ -52,19 +52,21 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Hover zoom */
-.column:hover::before {
-  transform: scale(1.1);
-}
-.container:hover .column:not(:hover)::before {
-  transform: scale(1.0);
+/* Hover zoom effect (desktop only) */
+@media (min-width: 769px) {
+  .column:hover::before {
+    transform: scale(1.1);
+  }
+
+  .container:hover .column:not(:hover)::before {
+    transform: scale(1.0);
+  }
 }
 
-/* Angled layout (desktop) */
+/* Clip-path layout for desktop */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
-  cursor: pointer;
 }
 .column.middle {
   clip-path: polygon(10% 0, 105% 0, 90% 100%, -5% 100%);
@@ -75,10 +77,12 @@ html, body {
   z-index: 1;
 }
 
-/* Expand */
-.column:hover {
-  flex: 1.4;
-  z-index: 4;
+/* Expand on hover (desktop) */
+@media (min-width: 769px) {
+  .column:hover {
+    flex: 1.4;
+    z-index: 4;
+  }
 }
 
 /* Text content */
@@ -86,7 +90,7 @@ html, body {
   position: relative;
   z-index: 10;
   padding: 2rem;
-  color: #ffe89f; /* buttery yellow */
+  color: #ffb7a2; /* soft coral to confirm version */
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
@@ -99,14 +103,14 @@ h1 {
   text-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
-/* Buttons (links) */
+/* Buttons */
 a {
   display: inline-block;
   margin: 0.4rem 0;
   padding: 10px 20px;
-  border: 2px solid #ffe89f;
+  border: 2px solid #ffb7a2;
   border-radius: 8px;
-  color: #ffe89f;
+  color: #ffb7a2;
   background-color: rgba(0, 0, 0, 0.4);
   text-decoration: none;
   font-weight: bold;
@@ -114,23 +118,19 @@ a {
   text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 a:hover {
-  background-color: #ffe89f;
+  background-color: #ffb7a2;
   color: black;
-  box-shadow: 0 0 15px #ffe89f;
+  box-shadow: 0 0 15px #ffb7a2;
 }
 
-/* GO TO WEBSITE: hidden on desktop, shown on hover */
+/* GO TO WEBSITE is always visible */
 .goto-btn {
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-}
-.column.left:hover .goto-btn {
   opacity: 1;
   pointer-events: auto;
+  user-select: auto;
 }
 
-/* ✅ MOBILE VERSION */
+/* MOBILE VERSION */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -144,10 +144,25 @@ a:hover {
     padding: 4vh 0;
   }
 
-  .column:hover {
-    flex: none;
-  }
-
   .content {
     top: auto;
     transform: none;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  a {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* Allow scrolling in right section */
+  .column.right .content {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
+}
