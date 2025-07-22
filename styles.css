@@ -18,46 +18,75 @@ html, body {
   height: 100vh;
 }
 
+/* Base column layout */
 .column {
   position: relative;
   flex: 1;
   transition: flex 0.4s ease;
   overflow: hidden;
+  z-index: 1;
 }
 
-/* LEFT */
+/* Background with zoom animation */
+.column::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.column.left::before {
+  background-image: url('bg_left.png');
+}
+.column.middle::before {
+  background-image: url('bg_middle.png');
+}
+.column.right::before {
+  background-image: url('bg_right.png');
+}
+
+/* Hovered column zooms in */
+.column:hover::before {
+  transform: scale(1.1);
+}
+
+/* All other columns zoom out */
+.container:hover .column:not(:hover)::before {
+  transform: scale(0.95);
+}
+
+/* Clipping shapes */
 .column.left {
-  background: url('bg_left.png') center center / cover no-repeat;
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
 }
 
-/* MIDDLE */
 .column.middle {
-  background: url('bg_middle.png') center center / cover no-repeat;
   clip-path: polygon(10% 0, 105% 0, 90% 100%, -5% 100%);
   z-index: 2;
 }
 
-/* RIGHT */
 .column.right {
-  background: url('bg_right.png') center center / cover no-repeat;
   clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%);
   z-index: 1;
 }
 
-/* HOVER EXPAND */
+/* Expansion on hover */
 .column:hover {
   flex: 1.4;
   z-index: 4;
 }
 
-/* TEXT */
+/* Foreground content */
 .content {
-  color: #ffd479; /* soft yellow */
-  padding: 2rem;
   position: relative;
   z-index: 10;
+  padding: 2rem;
+  color: #ffe169; /* yellow to confirm update */
   text-align: center;
 }
 
@@ -67,10 +96,9 @@ h1 {
 }
 
 a {
-  color: #ffd479;
+  color: #ffe169;
   text-decoration: underline;
   font-weight: bold;
   display: inline-block;
   margin-top: 0.5rem;
 }
-
