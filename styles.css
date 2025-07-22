@@ -12,7 +12,7 @@ html {
 body {
   font-family: 'Arial', sans-serif;
   background: black;
-  color: #ffcd9c; /* soft orange to confirm */
+  color: #FF0000; /* soft orange to confirm */
 }
 
 /* Desktop: full screen layout */
@@ -184,7 +184,26 @@ a:hover {
 }
 
 /* Fullscreen SkinSniper view */
-
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  transition: opacity 0.3s ease;
+  /* Remove filters for now */
+  /* filter: brightness(0.5) blur(4px); */
+  border: 5px solid lime; /* DEBUG */
+}
 
 .fullscreen {
   background: red;
