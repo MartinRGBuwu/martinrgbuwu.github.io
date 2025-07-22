@@ -4,21 +4,27 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
-  background: black;
 }
 
+body {
+  font-family: 'Arial', sans-serif;
+  background: black;
+  color: #ffcd9c; /* soft orange to confirm */
+}
+
+/* Desktop: full screen layout */
 .container {
   display: flex;
   flex-direction: row;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
+/* Each section */
 .column {
   position: relative;
   flex: 1;
@@ -52,7 +58,7 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Hover zoom effect (desktop only) */
+/* Hover zoom (desktop only) */
 @media (min-width: 769px) {
   .column:hover::before {
     transform: scale(1.1);
@@ -63,7 +69,7 @@ html, body {
   }
 }
 
-/* Clip-path layout for desktop */
+/* Clip-path layout (desktop only) */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
@@ -77,7 +83,7 @@ html, body {
   z-index: 1;
 }
 
-/* Expand on hover (desktop) */
+/* Hover expand (desktop only) */
 @media (min-width: 769px) {
   .column:hover {
     flex: 1.4;
@@ -90,7 +96,7 @@ html, body {
   position: relative;
   z-index: 10;
   padding: 2rem;
-  color: #ffb7a2; /* soft coral to confirm version */
+  color: #ffcd9c;
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
@@ -108,9 +114,9 @@ a {
   display: inline-block;
   margin: 0.4rem 0;
   padding: 10px 20px;
-  border: 2px solid #ffb7a2;
+  border: 2px solid #ffcd9c;
   border-radius: 8px;
-  color: #ffb7a2;
+  color: #ffcd9c;
   background-color: rgba(0, 0, 0, 0.4);
   text-decoration: none;
   font-weight: bold;
@@ -118,22 +124,29 @@ a {
   text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 a:hover {
-  background-color: #ffb7a2;
+  background-color: #ffcd9c;
   color: black;
-  box-shadow: 0 0 15px #ffb7a2;
+  box-shadow: 0 0 15px #ffcd9c;
 }
 
-/* GO TO WEBSITE is always visible */
+/* GO TO WEBSITE button is always visible */
 .goto-btn {
   opacity: 1;
   pointer-events: auto;
   user-select: auto;
 }
 
-/* MOBILE VERSION */
+/* ✅ MOBILE VERSION */
 @media (max-width: 768px) {
+  html, body {
+    height: auto;
+    overflow-y: auto;
+  }
+
   .container {
     flex-direction: column;
+    height: auto;
+    overflow: visible;
   }
 
   .column {
@@ -142,6 +155,10 @@ a:hover {
     flex: none;
     clip-path: none !important;
     padding: 4vh 0;
+  }
+
+  .column:hover {
+    flex: none;
   }
 
   .content {
@@ -159,10 +176,9 @@ a:hover {
     font-size: 0.95rem;
   }
 
-  /* Allow scrolling in right section */
-  .column.right .content {
-    max-height: 40vh;
-    overflow-y: auto;
-    padding-bottom: 2rem;
+  /* Allow scrolling in long sections if needed */
+  .column .content {
+    overflow: visible;
+    max-height: none;
   }
 }
