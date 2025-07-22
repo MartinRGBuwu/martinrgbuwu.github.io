@@ -7,60 +7,54 @@
 html, body {
   height: 100%;
   width: 100%;
-  font-family: Arial, sans-serif;
-  background: black;
   overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  background: black;
 }
 
 .container {
-  position: relative;
+  display: flex;
   width: 100vw;
   height: 100vh;
 }
 
-/* Base column style */
 .column {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 35vw;
-  transition: transform 0.4s ease;
+  position: relative;
+  flex: 1;
+  transition: flex 0.4s ease;
   overflow: hidden;
 }
 
-/* LEFT COLUMN */
+/* LEFT */
 .column.left {
-  left: 0;
   background: url('bg_left.png') center center / cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  clip-path: polygon(0 0, 102% 0, 87% 100%, 0% 100%);
   z-index: 3;
 }
 
-/* MIDDLE COLUMN */
+/* MIDDLE */
 .column.middle {
-  left: 30vw;
   background: url('bg_middle.png') center center / cover no-repeat;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  clip-path: polygon(13% 0, 102% 0, 87% 100%, -2% 100%);
   z-index: 2;
 }
 
-/* RIGHT COLUMN */
+/* RIGHT */
 .column.right {
-  left: 60vw;
   background: url('bg_right.png') center center / cover no-repeat;
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(13% 0, 100% 0, 100% 100%, -2% 100%);
   z-index: 1;
 }
 
-/* Hover expansion */
+/* HOVER EXPAND */
 .column:hover {
-  transform: scale(1.05);
+  flex: 1.4;
   z-index: 4;
 }
 
-/* Text styling */
+/* TEXT */
 .content {
-  color: #ffb46a; /* orange to confirm version */
+  color: #f78ae0; /* pink to confirm version */
   padding: 2rem;
   position: relative;
   z-index: 10;
@@ -73,9 +67,10 @@ h1 {
 }
 
 a {
-  color: #ffb46a;
+  color: #f78ae0;
   text-decoration: underline;
   font-weight: bold;
   display: inline-block;
   margin-top: 0.5rem;
 }
+
