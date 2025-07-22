@@ -9,14 +9,14 @@ html, body {
   width: 100%;
   overflow: hidden;
   font-family: 'Arial', sans-serif;
-  background: black; /* fallback background */
+  background: black;
 }
 
 .container {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background: black; /* hides any possible gaps */
+  background: black;
   position: relative;
 }
 
@@ -25,38 +25,37 @@ html, body {
   flex: 1;
   transition: flex 0.4s ease;
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-/* LEFT SECTION */
+/* LEFT */
 .column.left {
   background: url('bg_left.png') center center / cover no-repeat;
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   z-index: 3;
 }
 
-/* MIDDLE SECTION */
+/* MIDDLE */
 .column.middle {
   background: url('bg_middle.png') center center / cover no-repeat;
   clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
-  margin-left: -10vw; /* overlap to hide line */
   z-index: 2;
 }
 
-/* RIGHT SECTION */
+/* RIGHT */
 .column.right {
   background: url('bg_right.png') center center / cover no-repeat;
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  margin-left: -10vw; /* overlap to hide line */
   z-index: 1;
 }
 
-/* HOVER EFFECT */
+/* Hover effect */
 .column:hover {
   flex: 1.4;
   z-index: 4;
 }
 
-/* TEXT CONTENT */
+/* Content */
 .content {
   color: white;
   padding: 2rem;
