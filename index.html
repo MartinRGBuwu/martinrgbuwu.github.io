@@ -9,12 +9,26 @@
 <body>
   <div class="container">
     
-    <div class="column left">
-      <div class="content">
-        <h1>SkinSniper</h1>
-        <a href="https://skinsniper.com" target="_blank" class="goto-btn">GO TO WEBSITE</a>
-      </div>
-    </div>
+<!-- Fullscreen SkinSniper Section -->
+<div id="skinsniper-full" class="fullscreen hidden">
+  <div class="fullscreen-content">
+    <button class="close-btn" onclick="closeSkinSniper()">×</button>
+    <h1>SkinSniper</h1>
+    <p class="description">
+      Find any skin you'd like and compare prices across marketplaces in seconds.<br>
+      Everything about skins, all in one place.
+    </p>
+    <a href="https://skinsniper.com" target="_blank" class="goto-btn">GO TO WEBSITE</a>
+  </div>
+</div>
+    
+    
+<div class="column left" onclick="openSkinSniper()">
+  <div class="content">
+    <h1>SkinSniper</h1>
+    <a href="https://skinsniper.com" target="_blank" class="goto-btn">GO TO WEBSITE</a>
+  </div>
+</div>
 
 
     <div class="column middle">
@@ -36,6 +50,18 @@
       </div>
     </div>
   </div>
+
+  <script>
+  function openSkinSniper() {
+    document.getElementById('skinsniper-full').classList.remove('hidden');
+    document.querySelector('.container').style.display = 'none';
+  }
+
+  function closeSkinSniper() {
+    document.getElementById('skinsniper-full').classList.add('hidden');
+    document.querySelector('.container').style.display = 'flex';
+  }
+</script>
 </body>
 
 </html>
