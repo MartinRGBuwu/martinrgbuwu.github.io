@@ -18,7 +18,6 @@ html, body {
   height: 100vh;
 }
 
-/* Base column layout */
 .column {
   position: relative;
   flex: 1;
@@ -27,7 +26,7 @@ html, body {
   z-index: 1;
 }
 
-/* Background with zoom animation */
+/* Pseudo-element for background images */
 .column::before {
   content: "";
   position: absolute;
@@ -35,10 +34,12 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform: scale(1.05); /* Default: slightly zoomed in */
   transition: transform 0.5s ease;
   z-index: 0;
 }
 
+/* Background images */
 .column.left::before {
   background-image: url('bg_left.png');
 }
@@ -49,17 +50,17 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Hovered column zooms in */
+/* Hover zoom-in */
 .column:hover::before {
   transform: scale(1.1);
 }
 
-/* All other columns zoom out */
+/* Zoom-out (but still fills) */
 .container:hover .column:not(:hover)::before {
-  transform: scale(0.95);
+  transform: scale(1.0);
 }
 
-/* Clipping shapes */
+/* Clip-paths */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
@@ -75,18 +76,18 @@ html, body {
   z-index: 1;
 }
 
-/* Expansion on hover */
+/* Expand on hover */
 .column:hover {
   flex: 1.4;
   z-index: 4;
 }
 
-/* Foreground content */
+/* Text content */
 .content {
   position: relative;
   z-index: 10;
   padding: 2rem;
-  color: #ffe169; /* yellow to confirm update */
+  color: #ffc499; /* pale orange to confirm version */
   text-align: center;
 }
 
@@ -96,7 +97,7 @@ h1 {
 }
 
 a {
-  color: #ffe169;
+  color: #ffc499;
   text-decoration: underline;
   font-weight: bold;
   display: inline-block;
