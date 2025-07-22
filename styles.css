@@ -26,7 +26,7 @@ html, body {
   z-index: 1;
 }
 
-/* Background animation */
+/* Pseudo-element for background images */
 .column::before {
   content: "";
   position: absolute;
@@ -34,12 +34,12 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: scale(1.05); /* default slightly zoomed */
+  transform: scale(1.05); /* Default: slightly zoomed in */
   transition: transform 0.5s ease;
   z-index: 0;
 }
 
-/* Image sources */
+/* Background images */
 .column.left::before {
   background-image: url('bg_left.png');
 }
@@ -50,24 +50,88 @@ html, body {
   background-image: url('bg_right.png');
 }
 
-/* Zoom on hover */
+/* Hover zoom-in */
 .column:hover::before {
   transform: scale(1.1);
 }
 
-/* Zoom out for non-hovered */
+/* Zoom-out (but still fills) */
 .container:hover .column:not(:hover)::before {
   transform: scale(1.0);
 }
 
-/* Angled layout */
+/* Clip-paths */
 .column.left {
   clip-path: polygon(0 0, 105% 0, 90% 100%, 0% 100%);
   z-index: 3;
 }
+
 .column.middle {
   clip-path: polygon(10% 0, 105% 0, 90% 100%, -5% 100%);
   z-index: 2;
 }
+
 .column.right {
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%)
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, -5% 100%);
+  z-index: 1;
+}
+
+/* Expand on hover */
+.column:hover {
+  flex: 1.4;
+  z-index: 4;
+}
+
+/* Text content */
+.content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  color: #ffc499; /* pale orange to confirm version */
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #ffc499;
+  text-decoration: underline;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Align content vertically */
+.content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  color: #ffc499; /* current version color */
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hidden on load, appears on hover */
+.hover-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #ffc499;
+}
+
+/* Reveal GO TO WEBSITE on hover */
+.column.left:hover .hover-text {
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Make entire left side clickable */
+.column.left {
+  cursor: pointer;
+}
